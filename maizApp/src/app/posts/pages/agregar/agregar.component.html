@@ -1,1 +1,70 @@
-<p>agregar works!</p>
+<h1>
+  {{ post.id ? 'Editar' : 'Nuevo'}}
+  <small>{{post.titulo}}</small></h1>
+
+<div fxLayout="row"
+     fxLayoutGap="40px"
+     fxLayout.xs="column">
+
+  <div fxFlex="50"
+       fxLayout="column">
+
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input matInput
+             type="text"
+             [(ngModel)]="post.titulo"
+             required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ingredientes</mat-label>
+      <input matInput
+             type="text"
+             [(ngModel)]="post.ingredientes"
+             required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Contenido</mat-label>
+      <input matInput
+             type="text"
+             [(ngModel)]="post.contenido"
+             required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Foto Url</mat-label>
+      <input matInput
+             type="url"
+             [(ngModel)]="post.alt_img"
+             required>
+    </mat-form-field>
+
+    <br>
+
+    <div fxLayout>
+      <button mat-raised-button
+              color="primary"
+              (click)="guardar()">
+        <mat-icon>edit</mat-icon>
+        {{ post.id ? 'Actualizar' : 'Crear'}}
+        Guardar
+      </button>
+
+      <span class="spacer"></span>
+      <button *ngIf="post.id"
+              mat-raised-button
+              (click) = "borrar()"
+              color="warn">
+        <mat-icon>remove</mat-icon>
+        Borrar
+      </button>
+    </div>
+
+  </div>
+
+  <div fxFlex="50">
+    <img [src]="post | imagen ">
+  </div>
+</div>

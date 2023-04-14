@@ -1,7 +1,7 @@
 export interface Post {
-  id:             string;
+  id?:            string;
   titulo:         string;
+  ingredientes:   string;
   contenido:      string;
   alt_img?:       string;
-  cantidad_likes: number;
 }

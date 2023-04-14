@@ -9,7 +9,17 @@ header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
     switch ($_SERVER['REQUEST_METHOD']){
         case 'GET':
             $postController = new PostController();
-            $postController->getAllPosts();
+
+            if( isset($_GET['id']) ){
+                $postController->getWhere( $_GET['id']);
+                return;
+                } else if (isset($_GET['q'])){
+                $postController->getQuery( $_GET['q']);
+            }  else{
+                $postController->getAllPosts();
+                return;
+            }
+
         break;
         default:
         break;
